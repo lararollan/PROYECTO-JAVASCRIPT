@@ -90,12 +90,12 @@ function mostrarGanador() {
     let ganadorHistorial = document.createElement("p");
     ganadorHistorial.className = "ganadorHistorial";
     ganadorHistorial.textContent = `Ganador: ${ganador}`;
-    if (localStorage.getItem("balotaje") != null) {
-      let historialBalotaje = localStorage.getItem("balotaje");
-      ganadorHistorial.textContent += ` ${historialBalotaje}`;
-    } else {
-      ganadorHistorial.textContent += " en primera ronda";
-    }
+
+    ganadorHistorial.textContent +=
+      localStorage.getItem("balotaje") !== null
+        ? ` ${localStorage.getItem("balotaje")}`
+        : " en primera ronda";
+
     containerHistorial.append(ganadorHistorial);
     containerHistorial.innerHTML += "<br>";
   }
@@ -111,19 +111,16 @@ const mostrarCandidatos = (lista) => {
 };
 
 function recuperarDeLocal() {
-  if (localStorage.getItem("candidatos") !== null) {
-    historialVacio.className = "oculto";
-    mostrarFecha();
-
-    candidatos = JSON.parse(localStorage.getItem("candidatos"));
-
-    listaHistorial = document.createElement("ol");
-    listaHistorial.className = "listaHistorial";
-    mostrarCandidatos(candidatos);
-    mostrarGanador();
-  } else {
-    historialVacio.className = "visible";
-  }
+  historialVacio.className =
+    localStorage.getItem("candidatos") !== null
+      ? ("oculto",
+        mostrarFecha(),
+        (candidatos = JSON.parse(localStorage.getItem("candidatos"))),
+        (listaHistorial = document.createElement("ol")),
+        (listaHistorial.className = "listaHistorial"),
+        mostrarCandidatos(candidatos),
+        mostrarGanador())
+      : "visible";
 }
 
 // ---VARIABLES---
@@ -226,10 +223,9 @@ formulario.addEventListener("submit", (e) => {
     formularioBalotaje.className = "oculto";
     balotaje(listaCandidatos[0], listaCandidatos[1]);
 
-    if (localStorage.getItem("balotaje") != null) {
-      localStorage.removeItem("balotaje");
-    }
-    recuperarDeLocal();
+    localStorage.getItem("balotaje") != null
+      ? localStorage.removeItem("balotaje")
+      : recuperarDeLocal();
   }
 
   // --- SI SON >= 3 CANDIDATOS ---
@@ -260,10 +256,10 @@ formulario.addEventListener("submit", (e) => {
       case primero.votosP > 45 && primero.votosP > segundo.votosP:
         mensajeResultado.innerHTML = `<strong>${primero.nombre} ha ganado la elección</strong> con el ${primero.votosP}% de los votos, sin necesidad de balotaje`;
         localStorage.setItem("ganador", primero.nombre);
-        if (localStorage.getItem("balotaje") != null) {
-          localStorage.removeItem("balotaje");
-        }
-        recuperarDeLocal();
+
+        localStorage.getItem("balotaje") != null
+          ? localStorage.removeItem("balotaje")
+          : recuperarDeLocal();
         break;
 
       // else if SI >=40% con >10% de diferencia con el segundo --> GANADOR
@@ -276,10 +272,9 @@ formulario.addEventListener("submit", (e) => {
           primero.votosP - segundo.votosP
         }% con ${segundo.nombre}, sin necesidad de balotaje`;
         localStorage.setItem("ganador", segundo.nombre);
-        if (localStorage.getItem("balotaje") != null) {
-          localStorage.removeItem("balotaje");
-        }
-        recuperarDeLocal();
+        localStorage.getItem("balotaje") != null
+          ? localStorage.removeItem("balotaje")
+          : recuperarDeLocal();
         break;
 
       // else --> BALOTAJE
