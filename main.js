@@ -111,16 +111,17 @@ const mostrarCandidatos = (lista) => {
 };
 
 function recuperarDeLocal() {
-  historialVacio.className =
-    localStorage.getItem("candidatos") !== null
-      ? ("oculto",
-        mostrarFecha(),
-        (candidatos = JSON.parse(localStorage.getItem("candidatos"))),
-        (listaHistorial = document.createElement("ol")),
-        (listaHistorial.className = "listaHistorial"),
-        mostrarCandidatos(candidatos),
-        mostrarGanador())
-      : "visible";
+  if (localStorage.getItem("candidatos") !== null) {
+    historialVacio.className = "oculto";
+    mostrarFecha();
+    candidatos = JSON.parse(localStorage.getItem("candidatos"));
+    listaHistorial = document.createElement("ol");
+    listaHistorial.className = "listaHistorial";
+    mostrarCandidatos(candidatos);
+    mostrarGanador();
+  } else {
+    historialVacio.className = "visible";
+  }
 }
 
 // ---VARIABLES---
@@ -162,7 +163,7 @@ let historialBoton = document.getElementById("historialBoton");
 let historialBotonBorrar = document.getElementById("historialBotonBorrar");
 let containerHistorial = document.getElementById("containerHistorial");
 let registroVotaciones = document.getElementById("registroVotaciones");
-const historialVacio = document.getElementById("historialVacio");
+let historialVacio = document.getElementById("historialVacio");
 
 // --------EJECUCIÓN--------
 
@@ -315,30 +316,25 @@ formulario.addEventListener("submit", (e) => {
 //FIJARSE COMO MODIFICAR EL HISOTRIAL CUANDO REALIZO UNA BUSQUEDA SIN SALIR DE LA PESTAÑA
 
 historialBoton.onclick = () => {
-  let listaHistorial = document.querySelector(".listaHistorial");
   containerHistorial.classList.toggle("oculto");
-  if (!listaHistorial) {
-    recuperarDeLocal();
-  }
-};
 
+  !document.querySelector(".listaHistorial") && recuperarDeLocal();
+};
 historialBotonBorrar.onclick = () => {
-  localStorage.clear();
   historialVacio.className = "visible";
+  localStorage.clear();
 
   let fechaHistorial = document.querySelectorAll(".fechaHistorial");
-  if (fechaHistorial) {
+  fechaHistorial &&
     fechaHistorial.forEach((fecha) => {
       fecha.remove();
     });
-  }
 
   let listaHistorial = document.querySelectorAll(".listaHistorial");
-  if (listaHistorial) {
+  listaHistorial &&
     listaHistorial.forEach((lista) => {
       lista.remove();
     });
-  }
 
   let ganadorHistorial = document.querySelectorAll(".ganadorHistorial");
   if (ganadorHistorial) {
