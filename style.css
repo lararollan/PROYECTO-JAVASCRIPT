@@ -1,0 +1,319 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-image: linear-gradient(white 50%, rgba(100, 148, 237, 0.647));
+  min-height: 100vh;
+}
+
+ul {
+  list-style-type: none;
+}
+
+header {
+  width: 100%;
+}
+
+.header__bg {
+  background-image: url(images/header-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 15%;
+  padding: 4% 0;
+}
+.title__animated {
+  font-size: 3.5rem;
+  text-decoration: none;
+}
+
+.letras {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.letras li {
+  color: rgb(3, 7, 12);
+  text-shadow: 0 0 3px #ffffff, 0 0 3px white;
+  animation-name: titulo;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+}
+
+@keyframes titulo {
+  0% {
+    transform: translateY(-20%);
+    color: white;
+    text-shadow: none;
+  }
+
+  100% {
+    transform: translateX(0);
+    color: black;
+    text-shadow: none;
+  }
+}
+
+.letras li:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.letras li:nth-child(2) {
+  animation-delay: 0s;
+}
+.letras li:nth-child(3) {
+  animation-delay: 0.1s;
+}
+.letras li:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.letras li:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.letras li:nth-child(6) {
+  animation-delay: 0.2s;
+}
+.letras li:nth-child(7) {
+  animation-delay: 0s;
+}
+.letras li:nth-child(8) {
+  animation-delay: 0.3s;
+}
+.letras li:nth-child(9) {
+  animation-delay: 0.4s;
+}
+
+/* MAIN */
+main {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 3rem;
+}
+.subtitle {
+  text-align: center;
+  padding: 3rem 0 1rem 0;
+  font-weight: 300;
+}
+
+.instrucciones {
+  width: 90%;
+  margin: auto;
+}
+
+.instructions {
+  padding: 1rem;
+  border: solid 2px black;
+  box-shadow: 3px 3px rgba(128, 128, 128, 0.139);
+}
+
+.instructions li {
+  padding: 0.3rem;
+}
+
+.oculto {
+  display: none;
+}
+
+.seleccionNumero h3 {
+  text-align: center;
+}
+
+.botonesNumero {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.button,
+.buttonHistorial {
+  border: 2px solid #0e1565;
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 90px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  transform: translate(0px, -2px);
+}
+
+#cajaFormulario {
+  width: fit-content;
+  margin: auto;
+}
+
+#cajaFormulario h3 {
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.datosCandidatos {
+  padding-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+.datosCandidatos input {
+  font-size: 1.2rem;
+  border: dotted 1px grey;
+  padding: 0.5rem;
+  text-align: center;
+  background-color: transparent;
+}
+
+.datosCandidatos input[type="number"] {
+  width: 100px;
+}
+
+.datosCandidatos input::placeholder {
+  color: black;
+  text-align: center;
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+}
+
+.submitButton:hover {
+  transform: translate(0, -2px);
+}
+
+.submitButton {
+  border: 4px solid #0e1565;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.3rem;
+  background-color: rgba(248, 184, 64, 0.632);
+  margin-top: 2rem;
+  padding: 0.4rem;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #0e1565;
+}
+
+#nombreCandidato0 {
+  margin-left: 4px;
+}
+
+#primeraRonda {
+  text-align: center;
+}
+
+#primeraRonda h3 {
+  padding-bottom: 1rem;
+  color: #0e1565;
+}
+
+#mensajeResultadoA {
+  font-size: 1.3rem;
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  border: dotted 3px #0e1565;
+}
+
+#cajaFormularioBalotaje {
+  width: fit-content;
+  margin: auto;
+  text-align: center;
+}
+
+#cajaFormularioBalotaje h2 {
+  text-align: center;
+  padding: 1.2rem;
+}
+
+#cajaFormularioBalotaje h3 {
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.datosBalotaje {
+  padding-bottom: 2rem;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.datosBalotaje label {
+  text-align: center;
+  padding: 0.7rem;
+}
+
+.datosBalotaje input {
+  max-width: 50%;
+  font-size: 1.2rem;
+  border: dotted 1px grey;
+  padding: 0.5rem;
+  margin-left: 1rem;
+  text-align: center;
+  background-color: transparent;
+}
+
+.datosBalotaje input::placeholder {
+  color: black;
+  text-align: center;
+}
+
+#containerResultadoBalotaje {
+  text-align: center;
+}
+
+#containerResultadoBalotaje h3 {
+  padding-bottom: 1rem;
+  color: #0e1565;
+}
+
+#mensajeResultadoBalotaje {
+  font-size: 1.3rem;
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  border: dotted 3px #0e1565;
+}
+
+#containerHistorial {
+  padding-top: 1rem;
+}
+#containerHistorial #ultimasVotaciones {
+  text-decoration: underline;
+  padding-bottom: 1rem;
+}
+
+.fechaHistorial {
+  font-weight: 300;
+  padding: 0.3rem;
+  font-size: 1.2rem;
+  width: fit-content;
+  border: dotted 1px;
+  margin-bottom: 0.5rem;
+}
+
+.ganadorHistorial {
+  margin-top: 1rem;
+}
+
+/* FOOTER */
+footer {
+  position: relative;
+  width: 100%;
+  padding: 0rem 2rem 0.5rem 2rem;
+}
+
+footer ul {
+  display: flex;
+  gap: 2rem;
+}

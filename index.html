@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- FUENTE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,600;1,200;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>Simulador electoral</title>
+  </head>
+
+  <!-- INICIO SITIO WEB -->
+
+  <body>
+    <header>
+      <div class="header__bg">
+        <div class="title__animated">
+          <ul class="letras">
+            <li>S</li>
+            <li>i</li>
+            <li>m</li>
+            <li>u</li>
+            <li>l</li>
+            <li>a</li>
+            <li>d</li>
+            <li>o</li>
+            <li>r</li>
+          </ul>
+          <ul class="letras">
+            <li>e</li>
+            <li>l</li>
+            <li>e</li>
+            <li>c</li>
+            <li>t</li>
+            <li>o</li>
+            <li>r</li>
+            <li>a</li>
+            <li>l</li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+
+    <main>
+      <h2 class="subtitle">¿Cómo votar?</h2>
+      <div class="instrucciones">
+        <ul class="instructions">
+          <li>1. Podrá ingresar un máximo de 5 candidatos.</li>
+          <li>
+            2. Luego deberá ingresar la cantidad de votos que obtuvo cada
+            candidato.
+          </li>
+          <li>
+            3. Un candidato será considerado ganador en primera ronda cuando:
+            <ul>
+              <li>- Obtenga más del 45% de los votos.</li>
+              <li>
+                - Obtenga más del 40% de los votos con una diferencia mayor al
+                10% con respecto al siguiente candidato.
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            4. En caso de no cumplirse ninguna de las 2 condiciones, se
+            continuará con el balotaje.
+          </li>
+          <li>
+            5. Se solicitarán los nuevos recuentos de votos para los 2
+            candidatos ganadores de la primera ronda.
+          </li>
+          <li>6. Se anunciará al ganador de la elección.</li>
+        </ul>
+        <br />
+      </div>
+      <div class="seleccionNumero">
+        <h3>Elija el número de candidatos</h3>
+        <div class="botonesNumero">
+          <button class="button" id="button2">2</button>
+          <button class="button" id="button3">3</button>
+          <button class="button" id="button4">4</button>
+          <button class="button" id="button5">5</button>
+        </div>
+      </div>
+
+      <!-- FORMULARIO -->
+
+      <div id="cajaFormulario">
+        <form id="formularioCandidatos" class="oculto">
+          <h3>Ingrese el nombre y los votos de cada candidato:</h3>
+          <div class="datosCandidatos oculto">
+            <label class="label" for="nombreCandidato0">Candidato 1</label>
+            <input type="text" id="nombreCandidato0" placeholder="Nombre" />
+            <input type="number" id="votosCandidato0" placeholder="Votos" />
+          </div>
+          <div class="datosCandidatos oculto">
+            <label class="label" for="nombreCandidato1">Candidato 2</label>
+            <input type="text" id="nombreCandidato1" placeholder="Nombre" />
+            <input type="number" id="votosCandidato1" placeholder="Votos" />
+          </div>
+          <div class="datosCandidatos oculto">
+            <label class="label" for="nombreCandidato2">Candidato 3</label>
+            <input type="text" id="nombreCandidato2" placeholder="Nombre" />
+            <input type="number" id="votosCandidato2" placeholder="Votos" />
+          </div>
+          <div class="datosCandidatos oculto">
+            <label class="label" for="nombreCandidato3">Candidato 4</label>
+            <input type="text" id="nombreCandidato3" placeholder="Nombre" />
+            <input type="number" id="votosCandidato3" placeholder="Votos" />
+          </div>
+          <div class="datosCandidatos oculto">
+            <label class="label" for="nombreCandidato4">Candidato 5</label>
+            <input type="text" id="nombreCandidato4" placeholder="Nombre" />
+            <input type="number" id="votosCandidato4" placeholder="Votos" />
+          </div>
+          <div class="submit">
+            <input
+              class="submitButton"
+              type="submit"
+              name="Aceptar"
+              id="botonVotar"
+              value="Votar"
+            />
+          </div>
+        </form>
+      </div>
+      <br />
+
+      <!-- Resultados primera ronda -->
+      <div id="todoOculto" class="">
+        <div id="primeraRonda">
+          <h3 id="nVotantes" class="oculto"></h3>
+          <div id="resultadoA" class="oculto">
+            <h3>Resultado</h3>
+            <p id="mensajeResultadoA"></p>
+          </div>
+        </div>
+        <br />
+
+        <!-- Balotaje -->
+        <div id="cajaFormularioBalotaje">
+          <form class="oculto" id="formularioBalotaje">
+            <h2>Balotaje</h2>
+            <h3>Ingrese los votos obtenidos de la ronda Balotaje:</h3>
+            <div class="datosBalotaje">
+              <label for="votosCandidato0"> </label>
+              <input
+                type="number"
+                id="votosCandidato0"
+                placeholder="Votos"
+                required
+              />
+            </div>
+            <div class="datosBalotaje">
+              <label for="votosCandidato1"></label>
+              <input
+                type="number"
+                id="votosCandidato1"
+                placeholder="Votos"
+                required
+              />
+            </div>
+            <div class="submit">
+              <input
+                class="submitButton"
+                type="submit"
+                name="Aceptar"
+                id="botonVotarBalotaje"
+                value="Aceptar"
+              />
+            </div>
+          </form>
+        </div>
+        <div id="containerResultadoBalotaje">
+          <h3 id="nVotantesBalotaje" class="oculto"></h3>
+          <div id="resultadoBalotaje" class="oculto">
+            <h3>Resultado</h3>
+            <p id="mensajeResultadoBalotaje"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HISTORIAL -->
+
+      <button class="buttonHistorial" id="historialBoton">Registro</button>
+      <button class="buttonHistorial" id="historialBotonBorrar">
+        Borrar todo
+      </button>
+      <div id="containerHistorial" class="oculto">
+        <h4 id="ultimasVotaciones">Últimas votaciones:</h4>
+        <p class="oculto" id="historialVacio">Historial vacío</p>
+        <div id="registroVotaciones"></div>
+      </div>
+    </main>
+    <footer>
+      <ul>
+        <li>2023</li>
+        <li>Lara Veronica Rollan</li>
+      </ul>
+    </footer>
+    <script src="main.js"></script>
+  </body>
+</html>
