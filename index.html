@@ -51,38 +51,38 @@
 
     <main>
       <h2 class="subtitle">¿Cómo votar?</h2>
-      <div class="instrucciones">
-        <ul class="instructions">
-          <li>1. Podrá ingresar un máximo de 5 candidatos.</li>
-          <li>
+      <div class="instrucciones oculto">
+        <ul class="instructions" id="ulInstrucciones">
+          <li class="oculto">1. Podrá ingresar un máximo de 5 candidatos.</li>
+          <li class="oculto">
             2. Luego deberá ingresar la cantidad de votos que obtuvo cada
             candidato.
           </li>
-          <li>
+          <li class="oculto">
             3. Un candidato será considerado ganador en primera ronda cuando:
             <ul>
-              <li>- Obtenga más del 45% de los votos.</li>
-              <li>
+              <li class="oculto">- Obtenga más del 45% de los votos.</li>
+              <li class="oculto">
                 - Obtenga más del 40% de los votos con una diferencia mayor al
                 10% con respecto al siguiente candidato.
               </li>
             </ul>
           </li>
 
-          <li>
+          <li class="oculto">
             4. En caso de no cumplirse ninguna de las 2 condiciones, se
             continuará con el balotaje.
           </li>
-          <li>
+          <li class="oculto">
             5. Se solicitarán los nuevos recuentos de votos para los 2
             candidatos ganadores de la primera ronda.
           </li>
-          <li>6. Se anunciará al ganador de la elección.</li>
+          <li class="oculto">6. Se anunciará al ganador de la elección.</li>
         </ul>
         <br />
       </div>
-      <div class="seleccionNumero">
-        <h3>Elija el número de candidatos</h3>
+      <div class="seleccionNumero oculto">
+        <h2>Elija el número de candidatos</h2>
         <div class="botonesNumero">
           <button class="button" id="button2">2</button>
           <button class="button" id="button3">3</button>
@@ -206,6 +206,10 @@
         <li>Lara Veronica Rollan</li>
       </ul>
     </footer>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="main.js"></script>
   </body>
 </html>

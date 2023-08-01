@@ -12,6 +12,24 @@ class candidato {
 
 // ---FUNCIONES---
 
+// Mostrar instrucciones
+function mostrarSiguienteItem() {
+  let itemActual = 1;
+  const intervalo = setInterval(() => {
+    if (itemActual < itemInstrucciones.length) {
+      itemInstrucciones[itemActual].classList.remove("oculto");
+      console.log(`LENGTH ${itemInstrucciones.length}`);
+      console.log(`ITEM ${itemActual}`);
+      itemActual++;
+    } else {
+      clearInterval(intervalo);
+      let seleccionNumeroCandidatos =
+        document.querySelector(".seleccionNumero");
+      seleccionNumeroCandidatos.classList.remove("oculto");
+    }
+  }, 1500);
+}
+
 // Formulario visible para nCandidatos
 function nCandidatosClick(nCandidatos) {
   console.log(`Numero de candidatos: ${nCandidatos}`);
@@ -137,6 +155,8 @@ let segundo;
 const listaCandidatos = [];
 
 // TRAER ELEMENTOS HTML
+let divInstrucciones = document.querySelector(".instrucciones");
+const itemInstrucciones = document.querySelectorAll("#ulInstrucciones li");
 const botones = document.getElementsByClassName("button");
 let todoOculto = document.getElementById("todoOculto");
 let formulario = document.getElementById("formularioCandidatos");
@@ -166,6 +186,36 @@ let registroVotaciones = document.getElementById("registroVotaciones");
 let historialVacio = document.getElementById("historialVacio");
 
 // --------EJECUCIÓN--------
+
+// Mensaje cuenta atrás con Sweet Alert y Luxon
+
+const DateTime = luxon.DateTime;
+const Interval = luxon.Interval;
+
+let fechaActual = DateTime.now({ zone: "America/Buenos_Aires" });
+let fechaElecciones = DateTime.fromObject(
+  { day: 22, month: 10, year: 2023, hour: 0 },
+  { zone: "America/Buenos_Aires" }
+);
+let cuentaAtras = Interval.fromDateTimes(fechaActual, fechaElecciones);
+Swal.fire({
+  color: "#3085d6",
+  text: `Faltan ${cuentaAtras
+    .length("days")
+    .toFixed(0)} días para las Elecciones Nacionales de Argentina`,
+  confirmButtonText: "Empezar!",
+  confirmButtonColor: "#3085d6",
+}).then((result) => {
+  // Aparición de instrucciones con setInterval
+
+  if (result.isConfirmed) {
+    mostrarSiguienteItem();
+    setTimeout(() => {
+      divInstrucciones.classList.remove("oculto");
+      itemInstrucciones[0].classList.remove("oculto");
+    }, 500);
+  }
+});
 
 // Definir cantidad de candidatos (máximo 5) y hacer formulario visible
 for (let i = 0; i < botones.length; i++) {
