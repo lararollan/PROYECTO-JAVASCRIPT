@@ -66,7 +66,7 @@ function mostrarSiguienteItem() {
         document.querySelector(".seleccionNumero");
       seleccionNumeroCandidatos.classList.remove("oculto");
     }
-  }, 1500);
+  }, 1000);
 }
 
 // Formulario visible para nCandidatos
@@ -250,13 +250,12 @@ Swal.fire({
   confirmButtonColor: "#3085d6",
 }).then((result) => {
   // Aparición de instrucciones con setInterval
-
   if (result.isConfirmed) {
     mostrarSiguienteItem();
     setTimeout(() => {
       divInstrucciones.classList.remove("oculto");
       itemInstrucciones[0].classList.remove("oculto");
-    }, 500);
+    }, 100);
   }
 });
 
