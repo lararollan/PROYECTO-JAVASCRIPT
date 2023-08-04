@@ -10,7 +10,46 @@ class candidato {
   }
 }
 
+// API NOTICIAS CNBC
+const url =
+  "https://cnbc.p.rapidapi.com/news/v2/list-trending?tag=Articles&count=5";
+const options = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "d66651aa72msh94512dfa6153ddep17bcbejsnc1cd40d4aee5",
+    "X-RapidAPI-Host": "cnbc.p.rapidapi.com",
+  },
+};
+
 // ---FUNCIONES---
+const pedirNoticias = async () => {
+  const response = await fetch(url, options);
+  const result = await response.json();
+  const noticias = result.data.mostPopularEntries.assets;
+  console.log(noticias);
+  noticias.forEach((noticia) => {
+    const card = document.createElement("div");
+    card.className = "card"; // Agregar una clase para dar estilo a la tarjeta
+
+    const link = document.createElement("a");
+    link.className = "link";
+    link.href = noticia.url;
+
+    const imagen = document.createElement("img");
+    imagen.className = "imagen";
+    imagen.src = noticia.promoImage.url;
+
+    const titulo = document.createElement("h4");
+    titulo.textContent = noticia.headline;
+
+    link.appendChild(imagen);
+    link.appendChild(titulo);
+
+    card.appendChild(link);
+
+    listaNoticias.appendChild(card);
+  });
+};
 
 // Mostrar instrucciones
 function mostrarSiguienteItem() {
@@ -115,7 +154,6 @@ function mostrarGanador() {
         : " en primera ronda";
 
     containerHistorial.append(ganadorHistorial);
-    containerHistorial.innerHTML += "<br>";
   }
 }
 
@@ -134,6 +172,7 @@ function recuperarDeLocal() {
     mostrarFecha();
     candidatos = JSON.parse(localStorage.getItem("candidatos"));
     listaHistorial = document.createElement("ol");
+    listaHistorial.innerText = "Candidatos:";
     listaHistorial.className = "listaHistorial";
     mostrarCandidatos(candidatos);
     mostrarGanador();
@@ -184,8 +223,12 @@ let historialBotonBorrar = document.getElementById("historialBotonBorrar");
 let containerHistorial = document.getElementById("containerHistorial");
 let registroVotaciones = document.getElementById("registroVotaciones");
 let historialVacio = document.getElementById("historialVacio");
+const listaNoticias = document.getElementById("divNoticias");
 
 // --------EJECUCIÓN--------
+
+// API
+pedirNoticias();
 
 // Mensaje cuenta atrás con Sweet Alert y Luxon
 
@@ -253,7 +296,13 @@ formulario.addEventListener("submit", (e) => {
   // REGISTRAR FECHA Y HORA
 
   let fecha = new Date();
-  fecha = fecha.toLocaleString();
+  fecha = fecha.toLocaleString([], {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   localStorage.setItem("fecha", fecha);
 
   // CONVERTIR CANDIDATOS A JSON y GUARDAR EN LOCAL
@@ -370,6 +419,9 @@ historialBoton.onclick = () => {
 
   !document.querySelector(".listaHistorial") && recuperarDeLocal();
 };
+
+//BORRAR HISTORIAL
+
 historialBotonBorrar.onclick = () => {
   historialVacio.className = "visible";
   localStorage.clear();

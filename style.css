@@ -8,14 +8,11 @@ body {
   font-family: "Poppins", sans-serif;
   background-image: linear-gradient(white 50%, rgba(100, 148, 237, 0.647));
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 ul {
   list-style-type: none;
-}
-
-header {
-  width: 100%;
 }
 
 .header__bg {
@@ -89,20 +86,27 @@ header {
 
 /* MAIN */
 main {
-  width: 80%;
   margin: auto;
   margin-bottom: 3rem;
+  display: grid;
+  grid-template-columns: 65% 25%;
+  gap: 10%;
 }
+
+.divSimulador {
+  margin-left: 10%;
+}
+
 .subtitle {
   text-align: center;
   padding: 3rem 0 1rem 0;
   font-weight: 300;
 }
 
-.instrucciones {
+/* .instrucciones {
   width: 90%;
   margin: auto;
-}
+} */
 
 .instructions {
   padding: 1rem;
@@ -112,6 +116,7 @@ main {
 
 .instructions li {
   padding: 0.3rem;
+  font-size: 1.2rem;
 }
 
 .oculto {
@@ -289,9 +294,18 @@ button:hover {
 #containerHistorial {
   padding-top: 1rem;
 }
+
 #containerHistorial #ultimasVotaciones {
   text-decoration: underline;
   padding-bottom: 1rem;
+}
+
+.listaHistorial {
+  font-weight: bold;
+}
+.listaHistorial li {
+  margin-left: 1rem;
+  font-weight: 300;
 }
 
 .fechaHistorial {
@@ -305,6 +319,8 @@ button:hover {
 
 .ganadorHistorial {
   margin-top: 1rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
 }
 
 /* FOOTER */
@@ -317,4 +333,35 @@ footer {
 footer ul {
   display: flex;
   gap: 2rem;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+#divNoticias {
+  margin-right: 10%;
+}
+
+.link {
+  border: solid 2px black;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  margin-bottom: 1rem;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 3px 3px rgba(128, 128, 128, 0.139);
+  padding: 0.8rem;
+}
+
+.card img {
+  width: 100%;
+}
+
+.card h4 {
+  font-size: 0.9rem;
+  margin-right: 1rem;
+  text-align: center;
+  width: fit-content;
 }
