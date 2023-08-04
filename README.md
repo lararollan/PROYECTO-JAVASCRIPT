@@ -1,5 +1,3 @@
-PRE-ENTREGA 3 ROLLAN
-
 Simulador electoral según el sistema argentino
 
 ¿Cómo votar?
